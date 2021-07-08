@@ -4,6 +4,10 @@ public class Main {
         //task 1
         String str = "Hello world!";
         ReverseStack<Character> stack = new ReverseStack<>(str.length());
+        //task 3
+        if (stack.isFull()){
+            stack.reCapacity();
+        }
         char[] ch = new char[str.length()];
         for (int i = 0; i < str.length(); i++) {
             ch[i] = str.charAt(i);

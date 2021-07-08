@@ -54,7 +54,9 @@ public class ReverseStack<T> {
         return size;
     }
 
-    private void reCapacity(int newCapacity) {
+    //for task 3
+    public void reCapacity() {
+        int newCapacity = size*2;
         T[] tempArr = (T[]) new Object[newCapacity];
         System.arraycopy(list, 0, tempArr, 0, size);
         list = tempArr;

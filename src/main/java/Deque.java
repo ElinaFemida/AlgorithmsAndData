@@ -10,6 +10,7 @@ public class Deque<T> {
     private int end;
 
 
+
     public Deque(int size) {
         if (size <= 0) {
             throw new IllegalArgumentException("capacity: " + size);
@@ -21,7 +22,7 @@ public class Deque<T> {
         list = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
-    public void insert(T item) {
+    public void insertRight(T item) {
         if (isFull()) {
             throw new RuntimeException("queue is full");
         }
@@ -30,24 +31,58 @@ public class Deque<T> {
         end = nextIndex(end);
     }
 
-    public T remove() {
-        T temp = peek();
+    public void insertLeft(T item) {
+        if (isFull()) {
+            throw new RuntimeException("queue is full");
+        }
+        size++;
+        list[begin] = item;
+        if (--begin < 0) {
+            begin = size - 1;
+        }
+        else begin = begin-1;
+    }
+
+    public T removeLeft() {
+        T temp = peekFirst();
         size--;
         list[begin] = null;
-        begin = nextIndex(begin);
+        if (++begin == size){
+            begin = 0;
+        }
+        else begin = begin+1;
         return temp;
     }
 
-    public T peek() {
+    public T removeRight() {
+        T temp = peekLast();
+        size--;
+        list[end] = null;
+        if (--end < 0) {
+            end = size - 1;
+        }
+        else end = end-1;
+        return temp;
+    }
+
+    public T peekFirst() {
         if (isEmpty()) {
             throw new RuntimeException("queue is empty");
         }
         return list[begin];
     }
 
+    public T peekLast() {
+        if (isEmpty()) {
+            throw new RuntimeException("queue is empty");
+        }
+        return list[end];
+    }
+
     private int nextIndex(int index) {
         return (index + 1) % list.length;
     }
+
 
     public boolean isFull() {
         return size == list.length;
