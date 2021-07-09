@@ -1,24 +1,47 @@
+import java.util.Iterator;
+
 public class Main {
     public static void main(String[] args) {
 
-        //task 1
-        String str = "Hello world!";
-        ReverseStack<Character> stack = new ReverseStack<>(str.length());
-        //task 3
-        if (stack.isFull()){
-            stack.reCapacity();
+        MyLinkedList<Integer> mll = new MyLinkedList<>();
+
+        mll.insertFirst(5);
+        mll.insertFirst(6);
+        mll.insertFirst(2);
+        mll.insertFirst(8);
+        System.out.println(mll);
+
+        mll.insertLast(77);
+        mll.insertLast(88);
+        System.out.println(mll);
+
+        MyLinkedQueue<Integer> queue = new MyLinkedQueue<>();
+
+        queue.add(5);
+        queue.add(7);
+        queue.add(3);
+        queue.add(8);
+        for (int i = 0; i < 4; i++) {
+            System.out.println(queue.remove());
         }
-        char[] ch = new char[str.length()];
-        for (int i = 0; i < str.length(); i++) {
-            ch[i] = str.charAt(i);
+
+        Iterator<Integer> iterator = mll.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
         }
-        for (int i = 0; i < str.length(); i++) {
-            stack.push(ch[i]);
+
+        for (Integer x : mll) {
+            System.out.println(x);
         }
-        System.out.println("Before reverse: " + str);
-        System.out.print("After reverse: ");
-        for (int i = 0; i < str.length(); i++) {
-            System.out.print(stack.pop());
+
+
+        MyStack<Integer> stack = new MyStack<>();
+        stack.add(1);
+        stack.add(2);
+        stack.add(3);
+        stack.add(4);
+        System.out.println(stack.peek());
+        System.out.println(stack.remove());
+        System.out.println(stack.size());
         }
-    }
-}
+        }
