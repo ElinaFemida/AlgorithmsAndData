@@ -1,47 +1,39 @@
-import java.util.Iterator;
-
 public class Main {
     public static void main(String[] args) {
+        //task 1
 
-        MyLinkedList<Integer> mll = new MyLinkedList<>();
+        System.out.println(" 1 ^ 1 = " + exponentiation(1, 1));
+        System.out.println(" 2 ^ 0 = " + exponentiation(2, 0));
+        System.out.println(" 3 ^ 2 = " + exponentiation(3, 2));
+        System.out.println("-1 ^ 3 = " + exponentiation(-1, 3));
+        System.out.println("-4 ^ 2 = " + exponentiation(-4, 2));
 
-        mll.insertFirst(5);
-        mll.insertFirst(6);
-        mll.insertFirst(2);
-        mll.insertFirst(8);
-        System.out.println(mll);
+        //task 2
+        Item[] items = {
+                new Item(1, 9),
+                new Item(2, 8),
+                new Item(3, 7),
+                new Item(4, 6),
+                new Item(5, 5),
+                new Item(6, 9),
+                new Item(7, 8),
+                new Item(8, 2),
+                new Item(9, 6),
+                new Item(1, 5)
+        };
+        Bag bag = new Bag(items);
+        int bagSize = 16;
+        System.out.println(bag.findMaxSum(items.length - 1, bagSize));
+    }
 
-        mll.insertLast(77);
-        mll.insertLast(88);
-        System.out.println(mll);
-
-        MyLinkedQueue<Integer> queue = new MyLinkedQueue<>();
-
-        queue.add(5);
-        queue.add(7);
-        queue.add(3);
-        queue.add(8);
-        for (int i = 0; i < 4; i++) {
-            System.out.println(queue.remove());
+    private static double exponentiation(double num, int power) {
+        if (num == 0 && power <= 0) {
+            throw new ArithmeticException("Exponentiation is not possible");
         }
-
-        Iterator<Integer> iterator = mll.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
+        if (power == 0) {
+            return 1;
+        } else {
+            return num * exponentiation(num, --power);
         }
-
-        for (Integer x : mll) {
-            System.out.println(x);
-        }
-
-
-        MyStack<Integer> stack = new MyStack<>();
-        stack.add(1);
-        stack.add(2);
-        stack.add(3);
-        stack.add(4);
-        System.out.println(stack.peek());
-        System.out.println(stack.remove());
-        System.out.println(stack.size());
-        }
-        }
+    }
+}
